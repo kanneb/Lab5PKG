@@ -4,13 +4,18 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Alfred", "Rosberg",
+      email = "alfro937@student.liu.se",
+      role = c("aut")
+    ),
+    person(
+      "Kandes", "Ghebregziabiher",
+      email = "kangh634@student.liu.se",
       role = c("aut", "cre")
     )
   )
 Description: More about what it does (maybe more than one line).
     Continuation lines should be indented.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
