@@ -1,5 +1,3 @@
-library(httr2)
-
 translate_region <- function(region){
 
   if(region == "Africa"){
@@ -13,8 +11,18 @@ translate_region <- function(region){
 
 }
 
-
-
+#'Earthquake API fetcher
+#'
+#'Get data about earthquake
+#'
+#'@param region user selected continent
+#'@param starttime user selected start date
+#'@param endtime user selected end time
+#'@param min_magnitude user selected minimum magnitude
+#'
+#'@importFrom httr2 request req_url_query req_timeout req_perform resp_body_string
+#'@importFrom utils read.csv str
+#'@export
 earthquake <- function(region, starttime, endtime, min_magnitude){
 
   coordinates <- translate_region(region)
@@ -39,16 +47,9 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
 
   # Turning response to data.frame
   text_resp <- resp_body_string(resp)
-  df <- read.csv(text = str) %>%
+  df <- read.csv(text = str) |>
     subset(select = c("time", "latitude", "longitude", "depth", "mag", "magError", "place", "rms", "type"))
 
   # Returning data.frame
   return(df)
 }
-
-
-# Example
-re <- earthquake("Europe", "2025-01-01", "2025-01-03",1)
-
-
-print(fe)
