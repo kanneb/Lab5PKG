@@ -29,6 +29,8 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
     req_perform()
 
 
+
+
   return(resp_status(resp) )
 
 
