@@ -13,20 +13,29 @@ translate_region <- function(region){
 
 }
 
+
+
 earthquake <- function(region, starttime, endtime, min_magnitude){
 
   coordinates <- translate_region(region)
 
   #REQUEST
-  resp <- request("https://earthquake.usgs.gov/fdsnws/event/1/query") |>
-    req_url_query(format = "csv",
+  resp <- tryCatch(
+            request("https://earthquake.usgs.gov/fdsnws/event/1/query") |>
+                  req_url_query(format = "csv",
                   starttime = starttime, endtime = endtime,
                   minmagnitude = min_magnitude,
                   minlatitude = coordinates$minlatitude,
                   maxlatitude = coordinates$maxlatitude,
                   minlongitude = coordinates$minlongitude,
                   maxlongitude = coordinates$maxlongitude) |>
-    req_perform()
+                  req_timeout(30) |>
+                  req_perform(),
+            error = function(e) {
+              stop("Could not fetch data! ", conditionMessage(e), call. = FALSE)
+            }
+  )
+
 
 
   return(resp_status(resp) )
@@ -34,5 +43,6 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
 
 }
 
-re <- earthquake("Europe", "2025-01-01", "2025-01-03",1)
+fe <- earthquake("Europe", "2025-01-01", "2025-01-03",1)
 
+print(fe)
