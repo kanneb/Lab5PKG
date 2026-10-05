@@ -25,6 +25,16 @@ translate_region <- function(region){
 #'@export
 earthquake <- function(region, starttime, endtime, min_magnitude){
 
+  stopifnot("Magnitude must be a single number" = is.numeric(min_magnitude) && length(min_magnitude) == 1,
+            "Magnitude must be 0 or higher" = min_magnitude >= 0,
+            "Not valid region" = region %in% c("Asia", "Africa", "Europe", "South America",
+                                               "North America", "Antarctica", "Oceania"),
+            "Start time must be a date string like 2025-01-01" = is.character(starttime) &&
+              !is.na(as.Date(starttime, format = "%Y-%m-%d")),
+            "End time must be a date string like 2025-01-01" = is.character(endtime) &&
+              !is.na(as.Date(endtime, format = "%Y-%m-%d")),
+            "End time must be after start time" = as.Date(endtime) > as.Date(starttime))
+
   coordinates <- translate_region(region)
 
   #REQUEST
