@@ -30,13 +30,14 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
 
   # Turning response to data.frame
   text_resp <- resp_body_string(resp)
-  df <- read.csv(text = str) %>%
+  df <- read.csv(text = text_resp) %>%
     subset(select = c("time", "latitude", "longitude", "depth", "mag", "magError", "place", "rms", "type"))
+
 
   # Returning data.frame
   return(df)
 }
 
 # Example
-re <- earthquake("Europe", "2025-01-01", "2025-01-03",1)
+re <- earthquake("Europe", "2025-01-01", "2025-12-01",1)
 
