@@ -1,14 +1,15 @@
 translate_region <- function(region){
-
-  if(region == "Africa"){
-    return(list("minlatitude" = -35, "maxlatitude" = 38, "minlongitude" = -18,"maxlongitude" = 52))
-  }
-  else if(region == "Europe"){
-    return(list("minlatitude" = 35, "maxlatitude" = 72, "minlongitude" = -25,"maxlongitude" = 66))
-  }
-
-  return(FALSE)
-
+  "Returns a given regions coordinates"
+  switch(region,
+         "Europe"        = list(minlatitude =  36, maxlatitude = 82, minlongitude =  -25, maxlongitude =  52),
+         "Africa"        = list(minlatitude = -40, maxlatitude = 36, minlongitude =  -25, maxlongitude =  52),
+         "Asia"          = list(minlatitude = -11, maxlatitude = 82, minlongitude =   52, maxlongitude = 170),
+         "Oceania"       = list(minlatitude = -60, maxlatitude = -11, minlongitude = 110, maxlongitude = 210),
+         "North America" = list(minlatitude =   7, maxlatitude = 84, minlongitude = -190, maxlongitude = -25),
+         "South America" = list(minlatitude = -56, maxlatitude =  7, minlongitude =  -92, maxlongitude = -25),
+         "Antarctica"    = list(minlatitude = -90, maxlatitude = -60, minlongitude = -180, maxlongitude = 180),
+         NULL
+  )
 }
 
 #'Earthquake API fetcher
@@ -36,6 +37,7 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
             "End time must be after start time" = as.Date(endtime) > as.Date(starttime))
 
   coordinates <- translate_region(region)
+  if (is.null(coordinates)) stop("Invalid coordinates, Internal error")
 
   #REQUEST
   resp <- tryCatch(
