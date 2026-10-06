@@ -8,47 +8,49 @@
 [![R-CMD-check](https://github.com/kanneb/Lab5PKG/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kanneb/Lab5PKG/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of Lab5PKG is to …
+Lab5PKG fetches earthquake data from the USGS Earthquake API and returns
+it as a data frame.
 
 ## Installation
 
-You can install the development version of Lab5PKG from
-[GitHub](https://github.com/) with:
+Install from GitHub. Set the option first if you also want the vignette:
 
 ``` r
 # install.packages("pak")
+options(pkg.build_vignettes = TRUE)
 pak::pak("kanneb/Lab5PKG")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(Lab5PKG)
-## basic example code
+
+df <- earthquake("Europe", "2026-01-01", "2026-01-10", 3)
+head(df)
+#>                       time latitude longitude  depth mag magError
+#> 1 2026-01-09T14:28:55.992Z  45.7294   10.6498 10.874 3.2    0.056
+#> 2 2026-01-09T08:17:43.874Z  37.9262   36.6857 10.000 4.2    0.166
+#> 3 2026-01-09T01:33:59.599Z  36.7011   21.5331 51.698 4.1    0.184
+#> 4 2026-01-06T23:49:59.661Z  37.5127   20.3401 35.000 4.1    0.127
+#> 5 2026-01-06T02:57:52.904Z  37.6824   20.9266 10.000 4.1    0.197
+#> 6 2026-01-05T13:24:48.013Z  36.4933    9.2573 10.000 4.4    0.134
+#>                           place  rms       type
+#> 1     4 km N of Gargnano, Italy 0.64 earthquake
+#> 2   19 km ESE of Göksun, Turkey 1.26 earthquake
+#> 3   20 km SW of Methóni, Greece 0.54 earthquake
+#> 4 48 km WSW of Lithakiá, Greece 0.90 earthquake
+#> 5  9 km ESE of Lithakiá, Greece 0.73 earthquake
+#> 6 4 km NNE of Tabursuq, Tunisia 0.79 earthquake
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Available regions: Europe, Africa, Asia, Oceania, North America, South
+America and Antarctica.
+
+## More
+
+The vignette explains the function and its error handling:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+browseVignettes("Lab5PKG")
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
