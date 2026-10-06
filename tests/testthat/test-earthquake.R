@@ -1,13 +1,12 @@
 test_that("translate_region returns a list", {
-  skip_if_offline()
   reg <- translate_region("Europe")
-  expect_true(is.list(reg) == TRUE)
+  expect_true(is.list(reg))
 })
 
 test_that("earthquake returns a data.frame", {
   skip_if_offline()
   re <- earthquake("Europe", "2025-01-01", "2025-01-03",1)
-  expect_true(is.data.frame(re) == TRUE)
+  expect_s3_class(re, "data.frame")
 })
 
 test_that("translate_region returns NULL for unknown region", {
@@ -45,6 +44,7 @@ test_that("earthquake returns data matching the request", {
   expect_true(all(df$longitude >= reg$minlongitude & df$longitude <= reg$maxlongitude))
 })
 
-test_that("earthquake gives a error when over the API limit", {
-  expect_error(earthquake("North America", "2024-01-01", "2024-12-31", 0), "400")
+test_that("earthquake returns NULL when over the API limit", {
+  skip_if_offline()
+  expect_null(earthquake("North America", "2024-01-01", "2024-12-31", 0))
 })
