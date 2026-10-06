@@ -52,9 +52,11 @@ earthquake <- function(region, starttime, endtime, min_magnitude){
                   req_timeout(30) |>
                   req_perform(),
             error = function(e) {
-              stop("Could not fetch data! ", conditionMessage(e), call. = FALSE)
+              message("Could not fetch data! ", conditionMessage(e))
+              NULL
             }
   )
+  if (is.null(resp)) return(NULL)
 
 
   # Turning response to data.frame
