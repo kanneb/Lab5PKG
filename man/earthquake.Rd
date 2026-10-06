@@ -15,6 +15,10 @@ earthquake(region, starttime, endtime, min_magnitude)
 
 \item{min_magnitude}{user selected minimum magnitude}
 }
+\value{
+A data frame with one row per earthquake, an empty data frame
+  if nothing matches, or NULL if the request fails.
+}
 \description{
 Get data about earthquake
 }

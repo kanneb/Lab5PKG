@@ -20,6 +20,8 @@ translate_region <- function(region){
 #'@param starttime user selected start date
 #'@param endtime user selected end time
 #'@param min_magnitude user selected minimum magnitude
+#'@return A data frame with one row per earthquake, an empty data frame
+#'   if nothing matches, or NULL if the request fails.
 #'
 #'@importFrom httr2 request req_url_query req_timeout req_perform resp_body_string
 #'@importFrom utils read.csv
