@@ -14,12 +14,12 @@ translate_region <- function(region){
 
 #'Earthquake API fetcher
 #'
-#'Get data about earthquake
+#'Fetches earthquake data from the USGS Earthquake API.
 #'
-#'@param region user selected continent
-#'@param starttime user selected start date
-#'@param endtime user selected end time
-#'@param min_magnitude user selected minimum magnitude
+#'@param region Selected continent
+#'@param starttime Start date, "YYYY-MM-DD"
+#'@param endtime End date, "YYYY-MM-DD"
+#'@param min_magnitude Minimum magnitude
 #'@return A data frame with one row per earthquake, an empty data frame
 #'   if nothing matches, or NULL if the request fails.
 #'
