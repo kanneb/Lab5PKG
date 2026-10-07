@@ -68,4 +68,4 @@ plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
 
 The vignette explains every method with examples:
 
-    #> No vignettes found by browseVignettes("Lab5PKG")
+    #> starting httpd help server ... done
