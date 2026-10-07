@@ -25,6 +25,7 @@ Install from GitHub. Set the option first if you also want the vignette:
 
 ``` r
 # install.packages("pak")
+options(pkg.build_vignettes = TRUE)
 pak::pak("https://github.com/kanneb/Lab5PKG.git")
 ```
 
