@@ -54,7 +54,7 @@ plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
 
 The vignette explains every method with examples:
 
-```{r pressure, echo = FALSE}
-vignette("earthquake", package = "Lab5PKG")
+```r 
+browseVignettes("Lab5PKG")
 ```
 

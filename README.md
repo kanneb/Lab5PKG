@@ -16,6 +16,7 @@ Install from GitHub. Set the option first if you also want the vignette:
 
 ``` r
 # install.packages("pak")
+options(pkg.build_vignettes = TRUE)
 pak::pak("https://github.com/kanneb/Lab5PKG.git")
 ```
 
@@ -68,4 +69,6 @@ plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
 
 The vignette explains every method with examples:
 
-    #> starting httpd help server ... done
+``` r
+browseVignettes("Lab5PKG")
+```
