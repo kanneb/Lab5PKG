@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -19,38 +17,43 @@ knitr::opts_chunk$set(
   [![R-CMD-check](https://github.com/kanneb/Lab5PKG/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kanneb/Lab5PKG/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of Lab5PKG is to ...
+Lab5PKG is a R package for fetching earthquake data from the USGS Earthquake Catalog API. It will return earthquake data from a specific continent with a specified timeperiod and a minimum magnitude.
 
 ## Installation
 
-You can install the development version of Lab5PKG from [GitHub](https://github.com/) with:
+Install from GitHub. Set the option first if you also want the vignette:
 
 ``` r
 # install.packages("pak")
-pak::pak("kanneb/Lab5PKG")
+pak::pak("https://github.com/kanneb/Lab5PKG.git")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is an example of how the package works:
 
-```{r example}
+```{r example, warning=FALSE}
 library(Lab5PKG)
-## basic example code
+library(httr2)
+library(utils)
+
+df <- earthquake(region = "Africa", starttime = "2020-01-01", endtime = "2021-01-01", min_magnitude = 4)
+
+# Showing the first 10 observations of the earthquake data
+head(df, 10)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Visualisation of data can be the following
 
 ```{r cars}
-summary(cars)
+plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+# More
 
-You can also embed plots, for example:
+The vignette explains every method with examples:
 
 ```{r pressure, echo = FALSE}
-plot(pressure)
+browseVignettes("Lab5PKG")
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
