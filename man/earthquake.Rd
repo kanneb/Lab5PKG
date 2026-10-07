@@ -7,14 +7,18 @@
 earthquake(region, starttime, endtime, min_magnitude)
 }
 \arguments{
-\item{region}{user selected continent}
+\item{region}{Selected continent}
 
-\item{starttime}{user selected start date}
+\item{starttime}{Start date, "YYYY-MM-DD"}
 
-\item{endtime}{user selected end time}
+\item{endtime}{End date, "YYYY-MM-DD"}
 
-\item{min_magnitude}{user selected minimum magnitude}
+\item{min_magnitude}{Minimum magnitude}
+}
+\value{
+A data frame with one row per earthquake, an empty data frame
+  if nothing matches, or NULL if the request fails.
 }
 \description{
-Get data about earthquake
+Fetches earthquake data from the USGS Earthquake API.
 }

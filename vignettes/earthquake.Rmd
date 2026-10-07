@@ -1,0 +1,71 @@
+---
+title: "Earthquake API"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Earthquake API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Lab5PKG)
+```
+
+## Introduction
+
+Lab5PKG fetches earthquake data from the USGS Earthquake API
+(<https://earthquake.usgs.gov/fdsnws/event/1/>). The main function,
+`earthquake()`, takes a region, a time period and a minimum magnitude,
+and returns the matching earthquakes as a data frame.
+
+## Arguments
+
+- `region`: one of `"Europe"`, `"Africa"`, `"Asia"`, `"Oceania"`,
+  `"North America"`, `"South America"` or `"Antarctica"`.
+- `starttime`, `endtime`: dates as strings in the format `"YYYY-MM-DD"`.
+  The end date must be after the start date.
+- `min_magnitude`: a single number, 0 or higher.
+
+## Example
+
+Earthquakes in Europe with magnitude 3 or higher during the first ten days of 2026:
+
+```{r}
+df <- earthquake("Europe", "2026-01-01", "2026-01-10", 3)
+head(df)
+```
+
+The returned data frame has the columns `time`, `latitude`, `longitude`,
+`depth`, `mag`, `magError`, `place`, `rms` and `type`.
+
+## Invalid input
+
+The function checks its input and stops with an error message if
+something is wrong:
+
+```{r, error = TRUE}
+earthquake("Linköping", "2026-01-01", "2026-01-10", 3)
+earthquake("Europe", "2026-01-10", "2026-01-01", 3)
+```
+
+## When no data is returned
+
+- If the search has no matches, an empty data frame is returned.
+- If the request fails, for example when there is no internet connection
+  or the search exceeds the API limit of 20 000 events, a message is
+  printed and the function returns `NULL`.
+
+```{r}
+res <- earthquake("North America", "2024-01-01", "2024-12-31", 0)
+is.null(res)
+empty <- earthquake("Antarctica", "2025-01-01", "2025-01-02", 8)
+nrow(empty)
+```
+
