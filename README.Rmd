@@ -46,8 +46,8 @@ head(df, 10)
 
 Visualisation of data can be the following
 
-```{r cars}
-plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
+```{r density}
+plot(density(df$mag), main = "Distrubution of magnitude", xlab = "Magnitude")
 ```
 
 # More

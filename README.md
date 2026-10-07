@@ -60,10 +60,10 @@ head(df, 10)
 Visualisation of data can be the following
 
 ``` r
-plot(density(df$mag), main = "Distrubution of magnitudce", xlab = "Magnitude")
+plot(density(df$mag), main = "Distrubution of magnitude", xlab = "Magnitude")
 ```
 
-<img src="man/figures/README-cars-1.png" alt="" width="100%" />
+<img src="man/figures/README-density-1.png" alt="" width="100%" />
 
 # More
 
