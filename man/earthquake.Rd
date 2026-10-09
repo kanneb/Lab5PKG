@@ -22,3 +22,6 @@ A data frame with one row per earthquake, an empty data frame
 \description{
 Fetches earthquake data from the USGS Earthquake API.
 }
+\references{
+\url{https://earthquake.usgs.gov/fdsnws/event/1/}
+}

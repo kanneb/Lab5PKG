@@ -25,6 +25,7 @@ translate_region <- function(region){
 #'
 #'@importFrom httr2 request req_url_query req_timeout req_perform resp_body_string
 #'@importFrom utils read.csv
+#'@references \url{https://earthquake.usgs.gov/fdsnws/event/1/}
 #'@export
 earthquake <- function(region, starttime, endtime, min_magnitude){
 
